@@ -19,6 +19,11 @@ import Slide14_Xulosa           from './components/slides/Slide14_Xulosa.jsx'
 
 const TOTAL = 14
 
+// New order:
+// 1-Title, 2-Dolzarblik, 3-Maqsad, 4-Obekt, 5-Korxona, 6-Moliya, 7-Huquq,
+// 8-JshdsHisob (was 9), 9-Hisobot (was 10), 10-Daromadlar (was 11),
+// 11-Xorijiy (was 8, now after Daromadlar), 12-Muammolar,
+// 13-Xulosa (was 14), 14-Takomillashtirish (was 13)
 const SLIDES = [
   Slide01_Title,
   Slide02_Dolzarblik,
@@ -27,17 +32,17 @@ const SLIDES = [
   Slide05_Korxona,
   Slide06_Moliya,
   Slide07_Huquq,
-  Slide08_Xorijiy,
   Slide09_JshdsHisob,
   Slide10_Hisobot,
   Slide11_Daromadlar,
+  Slide08_Xorijiy,
   Slide12_Muammolar,
-  Slide13_Takomillashtirish,
   Slide14_Xulosa,
+  Slide13_Takomillashtirish,
 ]
 
 export default function App() {
-  const [current, setCurrent]         = useState(0)
+  const [current, setCurrent]           = useState(0)
   const [showOverview, setShowOverview] = useState(false)
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [animKey, setAnimKey]           = useState(0)
@@ -50,7 +55,6 @@ export default function App() {
   const prev = useCallback(() => goTo(current - 1), [current, goTo])
   const next = useCallback(() => goTo(current + 1), [current, goTo])
 
-  // Keyboard navigation
   useEffect(() => {
     const handler = (e) => {
       if (showOverview) {
@@ -68,7 +72,6 @@ export default function App() {
     return () => window.removeEventListener('keydown', handler)
   }, [current, showOverview, prev, next, goTo])
 
-  // Fullscreen API
   const toggleFullscreen = () => {
     if (!document.fullscreenElement) {
       document.documentElement.requestFullscreen().catch(() => {})
@@ -88,15 +91,14 @@ export default function App() {
   const SlideComponent = SLIDES[current]
 
   return (
-    <div className="w-screen h-screen flex flex-col bg-navy-900 overflow-hidden">
-      {/* Slide area */}
-      <div className="flex-1 overflow-hidden relative">
-        <div key={animKey} className="slide-enter w-full h-full">
+    <div className="w-screen h-screen flex flex-col overflow-hidden"
+      style={{ background: 'linear-gradient(135deg, #b8c4d8 0%, #c8d2e8 50%, #b8c4d8 100%)' }}>
+      <div className="flex-1 overflow-hidden relative p-3 pb-0">
+        <div key={animKey} className="slide-enter w-full h-full rounded-2xl overflow-hidden shadow-2xl">
           <SlideComponent total={TOTAL} />
         </div>
       </div>
 
-      {/* Navigation bar */}
       <Navigation
         current={current}
         total={TOTAL}
@@ -107,7 +109,6 @@ export default function App() {
         onToggleFullscreen={toggleFullscreen}
       />
 
-      {/* Slide overview modal */}
       {showOverview && (
         <SlideOverview
           current={current}

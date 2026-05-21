@@ -13,40 +13,41 @@ html, body, #root {
   height: 100%;
   overflow: hidden;
   font-family: 'Inter', system-ui, sans-serif;
-  background: #04101e;
+  background: #c8d2e8;
 }
 
 .slide-enter {
-  animation: slideEnter 0.4s ease-out forwards;
+  animation: slideEnter 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @keyframes slideEnter {
-  from { opacity: 0; transform: translateX(30px); }
+  from { opacity: 0; transform: translateX(28px); }
   to   { opacity: 1; transform: translateX(0); }
 }
 
 .slide-exit {
-  animation: slideExit 0.25s ease-in forwards;
+  animation: slideExit 0.2s ease-in forwards;
 }
 
 @keyframes slideExit {
   from { opacity: 1; transform: translateX(0); }
-  to   { opacity: 0; transform: translateX(-30px); }
+  to   { opacity: 0; transform: translateX(-28px); }
 }
 
-/* Recharts custom */
+/* Recharts light theme */
 .recharts-tooltip-wrapper {
   outline: none !important;
 }
 
 .recharts-default-tooltip {
-  background: #0e2046 !important;
-  border: 1px solid #1e3a6e !important;
-  border-radius: 8px !important;
-  color: #fff !important;
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 10px !important;
+  color: #1e293b !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.10) !important;
 }
 
-/* Scrollbar thin for inner content */
-.thin-scroll::-webkit-scrollbar { width: 4px; }
+/* Thin scrollbar for inner content */
+.thin-scroll::-webkit-scrollbar { width: 3px; }
 .thin-scroll::-webkit-scrollbar-track { background: transparent; }
-.thin-scroll::-webkit-scrollbar-thumb { background: #1e3a6e; border-radius: 4px; }
+.thin-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
